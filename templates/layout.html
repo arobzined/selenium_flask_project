@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            overflow-y: scroll;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(211, 213, 215);
+            
+        }
+
+        .container{
+            margin: 8px 0 0 150px;
+        }
+
+        nav{
+            height: 50px;
+            background-color:rgba(165, 42, 42, 0.385);
+
+        }
+        .searchBox{
+
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(211, 213, 215);
+            margin: 100px 100px 0 100px;
+            width: 80%;
+            height: 93vh;
+        }
+
+        .clickArea{
+            width: 30%;
+        }
+        .typeArea{
+            width: 70%;
+        }
+
+
+        .searchArea{
+            width: 500px;
+            height: 40px;
+            display: flex;
+
+        }
+
+        .searching{
+            width: 500px;
+            height: 60px;
+        }
+
+        #maintext{
+            font-size: 28px;
+        }
+
+        #hometext{
+            font-size: 24px;
+            text-decoration: none;
+            color: brown;
+        }
+        .productInfo{
+            margin:80px 80px 0 80px;
+            border: 1px solid brown;
+            display: flex;
+            width: 1350px;
+            height: 500px;
+            align-items: center;
+            justify-content: space-around;
+
+        }
+
+        .detailbttn1{
+            width: 100%;
+            border-radius: 4px;
+            border: 0;
+        }
+
+        .basicInfo{
+            width: 900px;
+            height: 500px;
+        }
+
+        img{
+            margin: 0 0 0 15px;
+            border-radius: 24px;
+        }
+
+        .info{
+            margin: 0 15px;
+            overflow-y: scroll;
+            width: 400px;
+            height: 420px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .prices{
+            margin:8px 80px 50px 80px;
+            border: 1px solid brown;
+            width: 1350px;
+            height: auto;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .priceCls{
+            height: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .link{
+            text-decoration: none;
+            color: brown;
+        }
+        .comments{
+            height: 500px;
+            width: auto;
+        }
+        .coms{
+            margin: 0 15px;
+            overflow-y: scroll;
+            height: 420px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-danger mb-3">
+        <div class="container">
+            
+            <a id="hometext" href="/" class = "navbar-brand">Anasayfa</a>
+        </div>
+    </nav>
+
+    {%if search%}
+
+        <div class="searchBox">
+            <div class="searching">
+                <div>
+                    <p id="maintext">Arama Yap</p>
+                </div>
+                <form class="searchArea" action="/" method="post">
+                    <input name="input" class="typeArea" type="text" placeholder="Buraya Yaz">
+                    <button id="myButton" class="clickArea">Ara</button>
+                </form>
+                <h5 id="myHeading" style="margin: 10px 0 0 0;"><i></i></h5>
+            </div>
+        </div>
+
+ 
+    {%elif product%}
+
+    <div class="productInfo">
+        <div class="img">
+            <img src="{{ user_image }}" alt="">
+        </div>
+        <div class="basicInfo">
+            <h4 style="text-align: center;">Özellikleri</h4>
+            <div class="info">
+                <table>
+                    {%for key,value in features.items()%}
+                        <tr>
+                            <td>{{key}}</td>
+                            <td>{{value}}</td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+        
+        <div class="comments">
+            <h4 style="text-align: center;">Yorumlar</h4>
+            <div class="coms">
+                {%for com in comments%}
+                    <p>{{com}}</p>
+                    <hr>
+                {%endfor%}
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="prices">
+        <ul>
+            {%for key,value in prices.items()%}
+                <li class="priceCls">
+                    <p>{{key}}</p>
+                    <a href="{{value}}" class="link" target="_blank">Siteye Git</a>
+                </li>
+                <hr>
+            {%endfor%}  
+        </ul> 
+    </div>
+    {%endif%}
+
+    <script>
+        //Select button by id
+        const MyButton = document.getElementById('myButton');
+        //Add on click listener for button
+        MyButton.addEventListener('click', function() {
+            //Select (h1) heading by id, and then change it's value to (bananas)
+            document.getElementById('myHeading').innerText = "Yükleniyor,Lütfen Bekleyiniz..."
+        })
+    </script>
+</body>
+</html>
