@@ -1,6 +1,6 @@
 # selenium_flask_project
 
-This project is basically a guide how you can use flask and selenium and how to make web scraping using them.
+This project is basically a guide how you can use flask and selenium and how to make web scraping (THIS IS A !! VERY VERY !! SIMPLE EXAMPLE) using them.
 
 # How to Run
 
