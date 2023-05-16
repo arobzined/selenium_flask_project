@@ -25,7 +25,7 @@ def scrollPage(size):
 
 
 
-driver = webdriver.Chrome(executable_path=r"C:\Users\deniz\Downloads\chromedriver_win32\chromedriver.exe")
+driver = webdriver.Chrome(executable_path=r"path_of_the_driver")
 
 
 
